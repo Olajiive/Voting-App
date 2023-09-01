@@ -1,0 +1,16 @@
+{% extends "home.html" %}
+{% block content %}
+        <div>
+            <div>
+                <p><strong> polls created by {{current_user}} so far</strong></p> 
+            <div>
+        
+            {% for poll in polls %}
+            <div>
+                <h2>{{poll.question}}</h2>
+                <button><a href="/post">Add</a></button>
+                <button><a href="/vote">vote</a></button>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}

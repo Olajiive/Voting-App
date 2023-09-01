@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+    <form action="/poll" method="POST">
+        <h2>{{ poll.question }}</h2>
+        <label for="option_one">
+            <p>{{poll.option_one}}</p>
+        </label>
+        <input type="radio" name="option" value="{{poll.option_one}}">
+
+        <label for="option_two">
+            <p>{{poll.option_two}}</p>
+        </label>
+        <input type="radio" name="option" value="{{poll.option_two}}">
+
+        <label for="option_three">
+            <p>{{poll.option_three}}</p>
+        </label>
+        <input type="radio" name="option" value="{{poll.option_three}}"></form> </br>
+
+        
+        <input type="submit" value="Save">
+
+    </form>
+{% endblock %}

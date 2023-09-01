@@ -1,0 +1,43 @@
+{% extends "home.html" %}
+{% block content %}
+     
+    <form action="/create" method="POST">
+        <div>
+            <div>
+                <p><strong>Create A New Poll</strong></p>
+            </div>
+
+            <div>
+                <label>
+                    <p><strong>Enter Poll Question</strong></p>
+                </label>
+                <textarea name="question" cols="80" rols="6"></textarea>
+            </div>
+            <span>
+                <div>
+                    <label for="option_one">
+                        <p><strong>Option 1</strong></p>
+                    </label>
+                    <input type="text" name="option_one">
+                </div>
+                <div>
+                    <label for="option_two">
+                        <p><strong>Option 2</strong></p>
+                    </label>
+                    <input type="text" name="option_two">
+                </div>
+                <div>
+                    <label for="option_three">
+                        <p><strong>Option 3</strong></p>
+                    </label>
+                    <input type="text" name="option_three" >
+                </div>
+            </span>
+
+            <input type="submit" value="Save">
+
+        </div>
+    
+    </form>
+        
+{% endblock %}

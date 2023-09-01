@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <h1>welcome {{ current_user }}</h1>
+        <div>
+            <div>
+                <p><strong>Available polls</strong></p> 
+            <div>
+        
+            {% for poll in polls %}
+                <div>
+                    <h2>{{poll.question}}</h2>
+                </div>
+            {% endfor %}
+        </div>
+       
+    {% else %}
+        <h1>Hello. Kindly Login if you have an account or signup to create an account.</h1>
+    {% endif %}
+{% endblock %}

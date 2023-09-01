@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content%}
+    <div>
+        
+        <p>A total number of <strong>{{ poll.option_one_count }}</strong> votes for {{poll.option_one}}</p>
+        <p>A total number of <strong>{{ poll.option_two_count }}</strong> votes for {{poll.option_two}}</p>
+        <p>A total number of <strong>{{poll.option_three_count }}</strong> votes for{{poll.option_three}}</p>
+        
+    </div>
+    
+{% endblock %}
