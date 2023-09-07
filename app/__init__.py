@@ -19,8 +19,8 @@ def create_app(config=config_dict["dev"]):
 
     login_manager.init_app(app)
 
-    app.register_blueprint(authblp)
-    app.register_blueprint(voteblp)
+    app.register_blueprint(authblp, url_prefix='/')
+    app.register_blueprint(voteblp, url_prefix='/')
    
 
     @app.shell_context_processor

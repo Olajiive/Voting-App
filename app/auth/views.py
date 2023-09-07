@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, redirect, request, flash, url_for
-from flask_login import login_required, login_user, logout_user, LoginManager, current_user
+from flask import Blueprint, render_template, redirect, request, flash
+from flask_login import login_required, login_user, logout_user, LoginManager
 from werkzeug.security import generate_password_hash, check_password_hash
 from ..models.user import User
 from ..utils import db
@@ -15,7 +15,7 @@ def user_loader(id):
 
 
 @authblp.route('/home')
-def home ():
+def home():
     return render_template("home.html")
 
 @authblp.route("/signup", methods=["GET", "POST"])
@@ -40,7 +40,7 @@ def signup():
                 db.session.add(new_user)
                 db.session.commit()
 
-                return redirect(url_for("login"))
+                return redirect("/login")
         else:
             return render_template("signup.html")
             

@@ -2,6 +2,7 @@
 {% block content %}
  
     <form action="/poll" method="POST">
+        {% for poll in polls %}
         <h2>{{ poll.question }}</h2>
         <label for="option_one">
             <p>{{poll.option_one}}</p>
@@ -20,6 +21,8 @@
 
         
         <input type="submit" value="Save">
+
+        {% endfor %}
 
     </form>
 {% endblock %}

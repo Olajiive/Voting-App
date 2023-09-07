@@ -15,14 +15,16 @@ def home():
     }
     return render_template("home.html", **context)
 
-@voteblp.route("/userpolls/<int:user_id>")
-def userpoll(user_id):
-    user = User.query.get_or_404(user_id)
-    polls = Poll.query.filter_by(user_id=user).all()
+@voteblp.route("/polls/user/<username>")
+def userpoll(username):
+    
+    polls = Poll.query.filter_by(user_id=current_user.id).all()
+    username = current_user.username
     context = {
-        "polls": polls
+        "polls": polls,
+        "username":username
     }
-    return render_template("userpolls.html", **context)
+    return render_template("userpoll.html", **context)
 
 @voteblp.route("/create", methods=["GET", "POST"])
 def create():
@@ -39,12 +41,12 @@ def create():
             flash("Question already exists, kindly input another quesion.")
 
         else:
-            new_poll = Poll(question= question, option_one=option_one, 
+            new_poll = Poll(user_id=current_user.id, question= question, option_one=option_one, 
                             option_two=option_two, option_three=option_three)
             
             db.session.add(new_poll)
             db.session.commit()
-            return redirect("/userpolls")
+            return redirect(url_for("vote.userpoll", username=current_user.username))
         
             
     return render_template("create.html")
@@ -58,7 +60,7 @@ def result():
     return render_template ("result.html", **context)
 
 
-@voteblp.route("/vote", methods=["GET", "POST"])
+@voteblp.route("/vote/<vote_id>", methods=["GET", "POST"])
 def vote(vote_id):
     poll = Poll.query.get_or_404(vote_id)
 
@@ -78,7 +80,7 @@ def vote(vote_id):
             flash("you did'nt select any option")
 
         db.session.commit()
-        return redirect("/result")
+        return redirect("/vote.result")
 
     return render_template("poll.html", **context)
 
