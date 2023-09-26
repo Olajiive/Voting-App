@@ -8,7 +8,7 @@
             {% for poll in polls %}
             <div>
                 <h2>{{poll.question}}</h2>
-                <button><a href="/post poll_id=poll.id">Add</a></button>
+                <button><a href="/post,poll_id=poll.id">Add</a></button>
                 <button><a href="{{url_for('vote.vote',vote_id=poll.id)}}">vote</a></button>
             </div>
             {% endfor %}

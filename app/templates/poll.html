@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
  
-    <form action="/poll" method="POST">
-        {% for poll in polls %}
+    <form action="{{url_for('vote.vote',vote_id=poll.id)}}" method="POST">
+    
         <h2>{{ poll.question }}</h2>
         <label for="option_one">
             <p>{{poll.option_one}}</p>
@@ -17,12 +17,10 @@
         <label for="option_three">
             <p>{{poll.option_three}}</p>
         </label>
-        <input type="radio" name="option" value="{{poll.option_three}}"></form> </br>
+        <input type="radio" name="option" value="{{poll.option_three}}"> </br>
 
         
         <input type="submit" value="Save">
-
-        {% endfor %}
 
     </form>
 {% endblock %}

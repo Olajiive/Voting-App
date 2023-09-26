@@ -51,9 +51,9 @@ def create():
             
     return render_template("create.html")
 
-@voteblp.route("/result")
-def result():
-    poll = Poll.query.get()
+@voteblp.route("/result/<id>")
+def result(id):
+    poll = Poll.query.get(id)
     context = {
         "poll": poll
     }
@@ -63,9 +63,9 @@ def result():
 @voteblp.route("/vote/<vote_id>", methods=["GET", "POST"])
 def vote(vote_id):
     poll = Poll.query.get_or_404(vote_id)
-
+   
     context = {
-        "poll":Poll
+        "poll":poll
     }
      
     if request.method == "POST":
@@ -80,7 +80,7 @@ def vote(vote_id):
             flash("you did'nt select any option")
 
         db.session.commit()
-        return redirect("/vote.result")
+        return redirect(url_for("vote.result", id=poll.id))
 
     return render_template("poll.html", **context)
 
